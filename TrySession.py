@@ -13,6 +13,10 @@ load_dotenv()
 
 AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+DB_HOSTNAME = os.getenv("DB_HOSTNAME")
+DB_USERNAME = os.getenv("DB_USERNAME")
+DB_DATABASENAME = os.getenv("DB_DATABASENAME")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 # ---- Install required packages ----
 # !pip install -q langchain-community langchain-openai langchain-text-splitters \
@@ -48,10 +52,10 @@ app.add_middleware(
 def get_db_connection():
     try:
         connection = mysql.connector.connect(
-            host="localhost",  # Update with your MySQL host
-            user="root",       # Update with your MySQL username
-            password="Saket@123",  # Update with your MySQL password
-            database="chatbot_db"  # Update with your database name
+            host=DB_HOSTNAME,  # Update with your MySQL host
+            user=DB_USERNAME,       # Update with your MySQL username
+            password=DB_PASSWORD,  # Update with your MySQL password
+            database=DB_DATABASENAME  # Update with your database name
         )
         return connection
     except Error as e:
